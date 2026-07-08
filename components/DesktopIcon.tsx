@@ -25,17 +25,14 @@ export default function DesktopIcon({
       onKeyDown={(e) => {
         if (e.key === "Enter") onOpen();
       }}
-      className="flex w-24 flex-col items-center gap-1.5 rounded-lg p-2 focus-visible:outline-2 focus-visible:outline-white/80"
+      className="flex w-24 flex-col items-center gap-1 rounded-lg p-2 focus-visible:outline-2 focus-visible:outline-white/80"
     >
       <span
-        className={`flex size-14 items-center justify-center rounded-2xl shadow-lg transition ${
-          selected ? "ring-2 ring-blue-400/90" : ""
+        className={`flex items-center justify-center rounded-xl p-1 transition ${
+          selected ? "bg-white/25 ring-1 ring-white/40" : ""
         }`}
-        style={{
-          background: `linear-gradient(145deg, ${app.color}, ${app.color}cc)`,
-        }}
       >
-        <Icon size={30} className="text-white drop-shadow-sm" aria-hidden />
+        <Icon size={52} />
       </span>
       <span
         className={`rounded px-1.5 py-0.5 text-[13px] font-medium text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)] ${

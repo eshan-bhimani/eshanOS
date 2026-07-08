@@ -16,7 +16,7 @@ export default function Dock({ runningApps, onOpen }: DockProps) {
       aria-label="Dock"
       className="absolute inset-x-0 bottom-2 z-[9999] flex justify-center"
     >
-      <div className="flex items-end gap-2 rounded-2xl border border-white/30 bg-white/25 px-3 pb-1.5 pt-2 shadow-[0_10px_40px_rgba(0,0,0,0.25)] backdrop-blur-2xl">
+      <div className="flex items-end gap-3 rounded-2xl border border-white/15 bg-black/35 px-4 pb-1 pt-2.5 shadow-[0_10px_40px_rgba(0,0,0,0.35)] backdrop-blur-2xl">
         {APPS.map((app) => {
           const Icon = app.icon;
           const running = runningApps.includes(app.id);
@@ -32,16 +32,13 @@ export default function Dock({ runningApps, onOpen }: DockProps) {
                 whileHover={reducedMotion ? undefined : { scale: 1.22, y: -8 }}
                 whileTap={reducedMotion ? undefined : { scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 400, damping: 22 }}
-                className="flex size-12 items-center justify-center rounded-xl shadow-md"
-                style={{
-                  background: `linear-gradient(145deg, ${app.color}, ${app.color}cc)`,
-                }}
+                className="flex items-center justify-center"
               >
-                <Icon size={26} className="text-white drop-shadow-sm" aria-hidden />
+                <Icon size={52} />
               </motion.button>
               <span
                 aria-hidden
-                className={`mt-1 size-1 rounded-full bg-black/60 ${
+                className={`mt-0.5 size-1 rounded-full bg-white/80 ${
                   running ? "opacity-100" : "opacity-0"
                 }`}
               />

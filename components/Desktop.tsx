@@ -81,7 +81,6 @@ export default function Desktop() {
     visibleWindows.length > 0
       ? visibleWindows.reduce((a, b) => (a.zIndex > b.zIndex ? a : b))
       : null;
-  const activeAppName = activeWindow ? getApp(activeWindow.id).label : "Finder";
 
   const MobileAppContent = mobileApp ? getApp(mobileApp).component : null;
 
@@ -100,7 +99,7 @@ export default function Desktop() {
 
         {!locked && (
           <>
-            <MenuBar activeAppName={activeAppName} />
+            <MenuBar onOpen={openApp} />
 
             {/* desktop icons, right-aligned column like macOS */}
             <div
@@ -133,6 +132,7 @@ export default function Desktop() {
                     <Window
                       key={win.id}
                       title={app.label}
+                      icon={app.icon}
                       position={win.position}
                       size={app.size}
                       zIndex={win.zIndex}
@@ -199,14 +199,7 @@ export default function Desktop() {
                     onClick={() => setMobileApp(app.id)}
                     className="flex flex-col items-center gap-1.5"
                   >
-                    <span
-                      className="flex size-16 items-center justify-center rounded-2xl shadow-lg"
-                      style={{
-                        background: `linear-gradient(145deg, ${app.color}, ${app.color}cc)`,
-                      }}
-                    >
-                      <Icon size={32} className="text-white" aria-hidden />
-                    </span>
+                    <Icon size={64} />
                     <span className="text-[13px] font-medium text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
                       {app.label}
                     </span>

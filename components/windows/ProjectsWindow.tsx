@@ -4,6 +4,9 @@ import { PROJECTS } from "@/data/projects";
 export default function ProjectsWindow() {
   return (
     <div className="space-y-3 p-5">
+      <p className="font-mono text-[13px] text-black/55">
+        Projects — {PROJECTS.length} items
+      </p>
       {PROJECTS.map((project) => (
         <article
           key={project.name}

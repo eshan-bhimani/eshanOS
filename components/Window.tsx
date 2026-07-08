@@ -1,10 +1,12 @@
 "use client";
 
-import { useRef, type ReactNode, type RefObject } from "react";
+import { useRef, type ComponentType, type ReactNode, type RefObject } from "react";
 import { motion, useDragControls, useReducedMotion } from "framer-motion";
+import type { AppIconProps } from "@/components/icons/AppIcons";
 
 type WindowProps = {
   title: string;
+  icon?: ComponentType<AppIconProps>;
   position: { x: number; y: number };
   size: { width: number; height: number };
   zIndex: number;
@@ -18,6 +20,7 @@ type WindowProps = {
 
 export default function Window({
   title,
+  icon: Icon,
   position,
   size,
   zIndex,
@@ -91,10 +94,11 @@ export default function Window({
           />
         </div>
         <span
-          className={`absolute left-1/2 -translate-x-1/2 text-[13px] font-semibold ${
+          className={`absolute left-1/2 flex -translate-x-1/2 items-center gap-1.5 text-[13px] font-semibold ${
             isActive ? "text-black/80" : "text-black/40"
           }`}
         >
+          {Icon && <Icon size={16} />}
           {title}
         </span>
       </div>

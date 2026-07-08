@@ -2,12 +2,12 @@ export default function AboutWindow() {
   return (
     <div className="space-y-4 p-6 text-[14px] leading-relaxed text-black/80">
       <div className="flex items-center gap-4">
-        <div className="flex size-16 items-center justify-center rounded-full bg-gradient-to-br from-[#c98a5e] to-[#9a6543] text-2xl font-semibold text-white">
+        <div className="flex size-16 items-center justify-center rounded-full bg-gradient-to-br from-[#4a9df0] to-[#1e6fd6] text-2xl font-semibold text-white">
           EB
         </div>
         <div>
-          <h1 className="text-xl font-semibold text-black">Eshan Bhimani</h1>
-          <p className="text-black/55">Software Engineer</p>
+          <h1 className="text-2xl font-bold text-black">Eshan Bhimani</h1>
+          <p className="font-mono text-[13px] text-blue-600">Software Engineer</p>
         </div>
       </div>
 
