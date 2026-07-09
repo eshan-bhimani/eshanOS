@@ -11,16 +11,26 @@ export default function AboutWindow() {
         </div>
       </div>
 
-      {/* TODO(eshan): replace with your real About Me copy (2-3 short paragraphs). */}
       <p>
-        Hi, I&apos;m Eshan — a software engineer who likes building polished,
-        thoughtful products. This site is my take on a portfolio: a little
-        operating system you can poke around in.
+        I&apos;m currently a junior CS major at Georgia Tech, with threads in
+        Intelligence and Systems &amp; Architecture. I transferred from UGA
+        after my sophomore year in Summer 2026, and I anticipate graduating in
+        May 2028.
       </p>
       <p>
-        Open <strong>Projects</strong> to see what I&apos;ve been building,{" "}
-        <strong>Resume</strong> for the formal version, or <strong>Mail</strong>{" "}
-        to get in touch.
+        I&apos;m currently a SWE Intern at NCR Atleos at their Global HQ in
+        Atlanta, where I&apos;m working on creating AI Agents and systems over
+        data layers.
+      </p>
+      <p>
+        I love building things that solve daily inconveniences — products that
+        people actually want to use. Whether it&apos;s a tool that saves someone
+        five minutes a day or a platform that fundamentally changes how people
+        interact with a system, I&apos;m drawn to practical, impactful work.
+      </p>
+      <p>
+        My long-term goal is to start a company in NYC or SF that builds a
+        bridge between AI, tech, and the software development industries.
       </p>
     </div>
   );
