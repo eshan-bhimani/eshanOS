@@ -60,7 +60,7 @@ export default function LockScreen({ onUnlock }: { onUnlock: () => void }) {
       role="presentation"
     >
       <Image
-        src="/images/lock-screen-portrait.jpg"
+        src="/images/eshanOS-lockscreen.jpg"
         alt=""
         fill
         priority
