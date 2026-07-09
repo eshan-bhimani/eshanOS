@@ -16,9 +16,9 @@ export default function ProjectsWindow() {
             <h2 className="text-[15px] font-semibold text-black/85">
               {project.name}
             </h2>
-            {project.link && (
+            {(project.link || project.github) && (
               <a
-                href={project.link}
+                href={project.link ?? project.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`Open ${project.name}`}

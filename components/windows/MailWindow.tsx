@@ -2,14 +2,14 @@ import { AtSign, Globe, Mail, Send } from "lucide-react";
 
 const EMAIL = "bhimanieshan@gmail.com";
 
-// TODO(eshan): confirm/replace social links.
 const LINKS = [
   { label: "GitHub", href: "https://github.com/eshan-bhimani", icon: Globe },
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/in/eshan-bhimani",
+    href: "https://linkedin.com/in/eshan-bhimani",
     icon: AtSign,
   },
+  { label: "X", href: "https://x.com/im_eshanb", icon: AtSign },
 ];
 
 export default function MailWindow() {
