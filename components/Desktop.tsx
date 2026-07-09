@@ -89,7 +89,7 @@ export default function Desktop() {
       {/* ---------- Desktop (md and up) ---------- */}
       <div className="hidden h-full w-full md:block">
         <Image
-          src="/images/desktop-golden-gate.jpg"
+          src="/images/images.jpeg"
           alt=""
           fill
           quality={90}
@@ -160,7 +160,7 @@ export default function Desktop() {
       {/* ---------- Mobile (below md): full-screen app views ---------- */}
       <div className="block h-full w-full md:hidden">
         <Image
-          src="/images/desktop-golden-gate.jpg"
+          src="/images/images.jpeg"
           alt=""
           fill
           quality={90}
