@@ -62,14 +62,14 @@ export const RESUME: Resume = {
       org: "Georgia Institute of Technology",
       period: "2026 — 2028",
       bullets: [
-        "Concentration: Intelligence & Systems & Architecture",
+        "Concentration: Intelligence (AI/ML) & Systems Architecture",
         "GPA: 3.86 / 4.0 — Presidential Scholar, Dean's List, Zell Miller Scholarship",
       ],
     },
   ],
   skills: [
     "Python",
-    "C++",
+    "C++20",
     "Java",
     "TypeScript",
     "JavaScript",
@@ -92,5 +92,5 @@ export const RESUME: Resume = {
     "LangGraph",
     "PyTorch",
   ],
-  pdf: null,
+  pdf: "/resume.pdf",
 };

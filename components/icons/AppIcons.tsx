@@ -221,3 +221,98 @@ export function MusicIcon({ size = 48 }: AppIconProps) {
     </Squircle>
   );
 }
+
+/** Terminal — macOS Terminal: dark slate square with prompt line. */
+export function TerminalIcon({ size = 48 }: AppIconProps) {
+  return (
+    <Squircle
+      size={size}
+      bg="url(#term-bg)"
+      defs={
+        <linearGradient id="term-bg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#2c313a" />
+          <stop offset="100%" stopColor="#1a1d24" />
+        </linearGradient>
+      }
+    >
+      {/* terminal header bar */}
+      <rect x="0" y="0" width="100" height="22" fill="#353b45" />
+      <circle cx="16" cy="11" r="3.5" fill="#ff5f56" />
+      <circle cx="28" cy="11" r="3.5" fill="#ffbd2e" />
+      <circle cx="40" cy="11" r="3.5" fill="#27c93f" />
+      {/* prompt symbol */}
+      <path
+        d="M 20 40 L 36 50 L 20 60"
+        fill="none"
+        stroke="#4ade80"
+        strokeWidth="6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <rect x="44" y="55" width="22" height="6" fill="#f3f4f6" rx="1" />
+    </Squircle>
+  );
+}
+
+/** Ask Eshan AI — Siri / Copilot multi-tone glowing orb. */
+export function AIIcon({ size = 48 }: AppIconProps) {
+  return (
+    <Squircle
+      size={size}
+      bg="url(#ai-bg)"
+      defs={
+        <>
+          <linearGradient id="ai-bg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor="#0f172a" />
+            <stop offset="100%" stopColor="#1e1b4b" />
+          </linearGradient>
+          <radialGradient id="orb1" cx="30%" cy="30%" r="70%">
+            <stop offset="0%" stopColor="#38bdf8" />
+            <stop offset="60%" stopColor="#818cf8" stopOpacity="0.8" />
+            <stop offset="100%" stopColor="#c084fc" stopOpacity="0" />
+          </radialGradient>
+          <radialGradient id="orb2" cx="70%" cy="70%" r="60%">
+            <stop offset="0%" stopColor="#f43f5e" />
+            <stop offset="100%" stopColor="#fb923c" stopOpacity="0" />
+          </radialGradient>
+        </>
+      }
+    >
+      <circle cx="50" cy="50" r="36" fill="url(#orb1)" />
+      <circle cx="55" cy="55" r="28" fill="url(#orb2)" style={{ mixBlendMode: "screen" }} />
+      {/* glowing AI spark */}
+      <path
+        d="M 50 28 Q 50 50 28 50 Q 50 50 50 72 Q 50 50 72 50 Q 50 50 50 28 Z"
+        fill="#ffffff"
+        opacity="0.9"
+      />
+    </Squircle>
+  );
+}
+
+/** Settings — macOS System Preferences: metallic gear icon. */
+export function SettingsIcon({ size = 48 }: AppIconProps) {
+  return (
+    <Squircle
+      size={size}
+      bg="url(#sett-bg)"
+      defs={
+        <linearGradient id="sett-bg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#94a3b8" />
+          <stop offset="100%" stopColor="#475569" />
+        </linearGradient>
+      }
+    >
+      <circle cx="50" cy="50" r="22" fill="#cbd5e1" />
+      <circle cx="50" cy="50" r="10" fill="#334155" />
+      <g fill="#cbd5e1">
+        <rect x="45" y="16" width="10" height="68" rx="3" />
+        <rect x="45" y="16" width="10" height="68" rx="3" transform="rotate(45 50 50)" />
+        <rect x="45" y="16" width="10" height="68" rx="3" transform="rotate(90 50 50)" />
+        <rect x="45" y="16" width="10" height="68" rx="3" transform="rotate(135 50 50)" />
+      </g>
+      <circle cx="50" cy="50" r="10" fill="#334155" />
+    </Squircle>
+  );
+}
+
