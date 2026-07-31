@@ -11,6 +11,9 @@ import MenuBar from "@/components/MenuBar";
 import Dock from "@/components/Dock";
 import DesktopIcon from "@/components/DesktopIcon";
 import Window from "@/components/Window";
+import Spotlight from "@/components/Spotlight";
+import ControlCenter from "@/components/ControlCenter";
+import { sounds } from "@/lib/sound";
 
 type WindowState = {
   id: AppId;
@@ -23,14 +26,22 @@ const BASE_Z = 100;
 
 export default function Desktop() {
   const [locked, setLocked] = useState(true);
+  const [wallpaper, setWallpaper] = useState("/images/images.jpeg");
   const [openWindows, setOpenWindows] = useState<WindowState[]>([]);
   const [selectedIcon, setSelectedIcon] = useState<AppId | null>(null);
   const [mobileApp, setMobileApp] = useState<AppId | null>(null);
+
+  const [spotlightOpen, setSpotlightOpen] = useState(false);
+  const [controlCenterOpen, setControlCenterOpen] = useState(false);
+
   const nextZ = useRef(BASE_Z);
   const desktopRef = useRef<HTMLDivElement>(null);
   const reducedMotion = useReducedMotion();
 
-  const unlock = useCallback(() => setLocked(false), []);
+  const unlock = useCallback(() => {
+    sounds.playUnlock();
+    setLocked(false);
+  }, []);
 
   const focusWindow = useCallback((id: AppId) => {
     nextZ.current += 1;
@@ -89,27 +100,34 @@ export default function Desktop() {
       {/* ---------- Desktop (md and up) ---------- */}
       <div className="hidden h-full w-full md:block">
         <Image
-          src="/images/images.jpeg"
-          alt=""
+          src={wallpaper}
+          alt="Desktop Background"
           fill
           quality={90}
           sizes="100vw"
-          className="object-cover"
+          className="object-cover transition-all duration-300"
         />
 
         {!locked && (
           <>
-            <MenuBar onOpen={openApp} />
+            <MenuBar
+              onOpen={openApp}
+              onOpenSpotlight={() => setSpotlightOpen(true)}
+              onToggleControlCenter={() => setControlCenterOpen((c) => !c)}
+            />
 
-            {/* desktop icons, right-aligned column like macOS */}
+            {/* Desktop Icons */}
             <div
               className="absolute inset-x-0 top-7 bottom-24"
               ref={desktopRef}
               onClick={(e) => {
-                if (e.target === e.currentTarget) setSelectedIcon(null);
+                if (e.target === e.currentTarget) {
+                  setSelectedIcon(null);
+                  setControlCenterOpen(false);
+                }
               }}
             >
-              <div className="absolute right-4 top-6 flex flex-col items-center gap-3">
+              <div className="absolute right-4 top-6 flex flex-col items-center gap-2">
                 {APPS.map((app) => (
                   <DesktopIcon
                     key={app.id}
@@ -142,7 +160,10 @@ export default function Desktop() {
                       onMinimize={() => minimizeWindow(win.id)}
                       onFocus={() => focusWindow(win.id)}
                     >
-                      <Content />
+                      <Content
+                        currentWallpaper={wallpaper}
+                        onSelectWallpaper={(wpSrc: string) => setWallpaper(wpSrc)}
+                      />
                     </Window>
                   );
                 })}
@@ -153,14 +174,26 @@ export default function Desktop() {
               runningApps={openWindows.map((w) => w.id)}
               onOpen={openApp}
             />
+
+            <Spotlight
+              isOpen={spotlightOpen}
+              onClose={() => setSpotlightOpen(false)}
+              onOpenApp={openApp}
+            />
+
+            <ControlCenter
+              isOpen={controlCenterOpen}
+              onClose={() => setControlCenterOpen(false)}
+              onOpenApp={openApp}
+            />
           </>
         )}
       </div>
 
-      {/* ---------- Mobile (below md): full-screen app views ---------- */}
+      {/* ---------- Mobile (below md) ---------- */}
       <div className="block h-full w-full md:hidden">
         <Image
-          src="/images/images.jpeg"
+          src={wallpaper}
           alt=""
           fill
           quality={90}
@@ -184,7 +217,10 @@ export default function Desktop() {
                 </span>
               </div>
               <div className="min-h-0 flex-1 select-text overflow-y-auto">
-                <MobileAppContent />
+                <MobileAppContent
+                  currentWallpaper={wallpaper}
+                  onSelectWallpaper={(wpSrc: string) => setWallpaper(wpSrc)}
+                />
               </div>
             </div>
           ) : (
@@ -196,7 +232,10 @@ export default function Desktop() {
                     key={app.id}
                     type="button"
                     aria-label={app.label}
-                    onClick={() => setMobileApp(app.id)}
+                    onClick={() => {
+                      sounds.playOpen();
+                      setMobileApp(app.id);
+                    }}
                     className="flex flex-col items-center gap-1.5"
                   >
                     <Icon size={64} />
@@ -210,7 +249,7 @@ export default function Desktop() {
           ))}
       </div>
 
-      {/* ---------- Lock screen overlay, crossfades out on unlock ---------- */}
+      {/* ---------- Lock screen overlay ---------- */}
       <AnimatePresence>
         {locked && (
           <motion.div
